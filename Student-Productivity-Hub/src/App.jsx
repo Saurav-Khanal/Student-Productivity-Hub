@@ -9,9 +9,7 @@ const App = () => {
   return (
     <div className='flex'>
       <Sidebar/>
-      <div>
       <Dashboard/>
-      </div>
     </div>
   )
 }
