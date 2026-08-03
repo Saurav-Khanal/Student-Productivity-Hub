@@ -9,11 +9,15 @@ const TaskList = () => {
   }
 
   const AddTask=()=>{
+    if(task.trim()===""){
+      return;
+    }
     const currentTasks=[...taskList];
     currentTasks.push(task);
     setTaskList(currentTasks);
     console.log(currentTasks);
     setTask('');
+
     }
     const deleteTask=(idx)=>{
       const newTasks=taskList.filter((task,index)=>{
@@ -22,7 +26,7 @@ const TaskList = () => {
       setTaskList(newTasks);
     }
   return (
-    <div>
+    <div className='flex-1'>
     <div className='bg-white  rounded-lg mt-6 shadow-2xl p-10  '>
       <h1 className='text-3xl font-bold'>Tasks</h1>
       <div className='flex gap-4 mt-6'>
@@ -35,19 +39,24 @@ const TaskList = () => {
       </div>
       </div>
       <ul>
-        {taskList.map((ele,idx)=>{
+        {taskList.length===0?(
+          <p className='text-center text=gray mt-6'>
+            No task yet! Add your first task.
+          </p>
+        ):(
+          taskList.map((ele,idx)=>{
           return(
-            <li key={idx} className='flex justify-between items-center bg-gray-100 rounded-lg p-3 mt-3'>
+            <li key={idx} className='flex justify-between items-center bg-gray-100 rounded-lg p-3 m-5 font-bold hover:scale-95 transition-all duration-200'>
               <span>{ele}</span>
             <button onClick={()=>{
               deleteTask(idx);
-            }} >
+            }} className='bg-red-700 text-white rounded px-5 py-2 hover:bg-red-400' >
               Delete
             </button>
             </li>
-
           )
-        })}
+        })
+        )}
       </ul>
     </div>
   )
