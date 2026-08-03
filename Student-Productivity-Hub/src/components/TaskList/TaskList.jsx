@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect } from 'react'
 import { useState } from 'react'
 const TaskList = () => {
   const [task, setTask] = useState('');
   const [taskList, setTaskList] = useState([]);
-
+  const [loaded, setLoaded] = useState(false);
   const formhandler=(e)=>{
     setTask(e.target.value);
   }
@@ -13,9 +13,11 @@ const TaskList = () => {
       return;
     }
     const currentTasks=[...taskList];
-    currentTasks.push(task);
+    currentTasks.push({
+      text:task,
+      completed:false,
+    })
     setTaskList(currentTasks);
-    console.log(currentTasks);
     setTask('');
 
     }
@@ -25,6 +27,35 @@ const TaskList = () => {
       })
       setTaskList(newTasks);
     }
+
+    const completeTask=(idx)=>{
+      const newTasks=taskList.map((task,index)=>{
+        if(index===idx){
+          return {
+            ...task,
+            completed:!task.completed,
+          }
+        }
+        return task;
+      })
+      setTaskList(newTasks);
+    }
+    useEffect(()=>{
+      if(loaded){
+      localStorage.setItem("tasks",JSON.stringify(taskList));
+      }
+    },[taskList,loaded])
+
+    useEffect(()=>{
+      const savedTasks= localStorage.getItem("tasks")
+    const parsedTasks=JSON.parse(savedTasks);
+    if(parsedTasks){
+      setTaskList(parsedTasks);
+    }
+          setLoaded(true);
+
+    },[])
+
   return (
     <div className='flex-1'>
     <div className='bg-white  rounded-lg mt-6 shadow-2xl p-10  '>
@@ -47,7 +78,12 @@ const TaskList = () => {
           taskList.map((ele,idx)=>{
           return(
             <li key={idx} className='flex justify-between items-center bg-gray-100 rounded-lg p-3 m-5 font-bold hover:scale-95 transition-all duration-200'>
-              <span>{ele}</span>
+              <input onChange={()=>{
+                completeTask(idx);
+              }} type="checkbox" checked={ele.completed}/>
+              <span className={ele.completed? "text-gray-500 line-through":""}>
+                {ele.text}
+              </span>
             <button onClick={()=>{
               deleteTask(idx);
             }} className='bg-red-700 text-white rounded px-5 py-2 hover:bg-red-400' >
