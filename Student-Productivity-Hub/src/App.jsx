@@ -7,9 +7,9 @@ import TaskList from './components/TaskList/TaskList'
 import Timer from './components/Timer/Timer'
 const App = () => {
   return (
-    <div className='flex'>
+    <div className='flex items-start'>
       <Sidebar/>
-      <TaskList/>
+      <Timer/>
     </div>
   )
 }
