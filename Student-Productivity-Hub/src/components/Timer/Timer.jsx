@@ -1,4 +1,4 @@
-import React, { use, useRef } from 'react'
+import React, { use, useEffect, useRef } from 'react'
 import { useState } from 'react';
 const Timer = () => {
   const intervalRef=useRef(null);
@@ -6,6 +6,10 @@ const Timer = () => {
   const minutes=Math.floor(time/60);
   const seconds=time%60;
   const formattedSeconds=seconds.toString().padStart(2,"0");  
+  useEffect(()=>{
+    const latestTime=localStorage.getItem("pomo");
+    setTime(latestTime);
+  },[])
   const startTimer=()=>{
     if(intervalRef.current){
       return;
