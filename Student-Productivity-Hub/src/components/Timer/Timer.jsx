@@ -3,6 +3,7 @@ import { useState } from 'react';
 const Timer = () => {
   const intervalRef=useRef(null);
   const [time, setTime] = useState(1500);
+  const [mode, setMode] = useState("pomodoro");
   const minutes=Math.floor(time/60);
   const seconds=time%60;
   const formattedSeconds=seconds.toString().padStart(2,"0");  
@@ -39,8 +40,30 @@ const Timer = () => {
     const inital_time=25*60;
     setTime(inital_time)
   }
+  useEffect(()=>{
+    if(mode==="pomodoro"){
+      setTime(1500);
+    }else if(mode==="short"){
+      setTime(300);
+    }
+    else{
+    setTime(900);
+    }
+  },[mode])
   return (
     <div className="bg-white rounded-xl p-10 shadow-[0_20px_60px_rgba(0,0,0,0.25)] hover:-translate-y-2 transition-all duration-300 flex-1 m-40">
+      <div className='flex gap-2 mb-6'>
+          <button onClick={()=>{
+            setMode("pomodoro")
+          }}>Pomodoro</button>
+          <button onClick={()=>{
+            setMode("short")
+          }}>Short Break</button>
+          <button onClick={()=>{
+            setMode("long")
+          }}>Long Break</button>
+      </div>
+  
         <h1 className='text-3xl font-bold text-center'>Pomodoro Timer</h1>
         <h2 className='text-7xl font-bold text-center mt-8'>{minutes}:{formattedSeconds}</h2>
         <div className='flex justify-center gap-4 mt-8'>
