@@ -73,7 +73,7 @@ const Timer = () => {
   },[mode])
 
   return (
-    <div className="bg-white rounded-xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.25)] hover:-translate-y-2 transition-all duration-300 flex-1 m-4 sm:m-10 lg:m-40">
+    <div className="bg-white rounded-xl  sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.25)] hover:-translate-y-2 transition-all duration-300 flex-1 m-4 sm:m-10 lg:m-40">
       <div className='flex flex-wrap gap-4 mb-6 justify-center '>
           <button className="bg-red-500 px-4 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-white text-lg sm:text-2xl cursor-pointer" onClick={()=>{
             pauseTImer();

@@ -81,7 +81,7 @@ const TaskList = () => {
               <input onChange={()=>{
                 completeTask(idx);
               }} type="checkbox" checked={ele.completed}/>
-              <span className={ele.completed? "text-gray-500 line-through":""}>
+              <span className={`flex-1 ml-3 break-words text-lg ${ele.completed ? "text-gray-500 line-through" : ""}`}>
                 {ele.text}
               </span>
             <button onClick={()=>{
