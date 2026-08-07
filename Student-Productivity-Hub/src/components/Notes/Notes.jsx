@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import { useState } from 'react'
 import TaskList from '../TaskList/TaskList';
  
@@ -15,18 +15,28 @@ const Addnote=()=>{
   }
 
   const currentNotes=[...noteList];
-  currentNotes.push(text)
+  currentNotes.push(text);
   setNoteList(currentNotes);
-  console.log(currentNotes);  
   setText("");
-
+  localStorage.setItem("noteList",JSON.stringify(currentNotes));
 }
-
+useEffect(()=>{
+const loadNote=localStorage.getItem("noteList");
+if(loadNote){
+  setNoteList(JSON.parse(loadNote));
+}
+},[])
 const deleteNote=(idx)=>{
   const copyTask=[...noteList];
   copyTask.splice(idx,1);
   setNoteList(copyTask);
+  localStorage.setItem("noteList",JSON.stringify(copyTask));
 }
+
+useEffect(()=>{
+  localStorage.setItem("totalNotes",noteList.length);
+},[noteList])
+
   return (
     <div className='h-full flex flex-col'>
     <div className='bg-white rounded-xl shadow-lg p-6 '>

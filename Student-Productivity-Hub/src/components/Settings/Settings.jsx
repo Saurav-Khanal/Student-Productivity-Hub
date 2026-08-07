@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 const Settings = () => {
   useEffect(()=>{
-   const savedPomo= localStorage.getItem("pomo");
-    const savedShort=localStorage.getItem("short");
-    const savedLong=localStorage.getItem("long");
+   const savedPomo= localStorage.getItem("pomoDuration");
+    const savedShort=localStorage.getItem("shortDuration");
+    const savedLong=localStorage.getItem("longDuration");
     setPomo(savedPomo);
     setShort(savedShort);
     setLong(savedLong)
@@ -25,9 +25,9 @@ const Settings = () => {
   }
 
   const saveSetting=()=>{
-    localStorage.setItem("pomo",pomo);
-    localStorage.setItem("short",short);
-    localStorage.setItem("long",long);
+    localStorage.setItem("pomoDuration",pomo);
+    localStorage.setItem("shortDuration",short);
+    localStorage.setItem("longDuration",long);
   }
   
   return(
@@ -36,7 +36,7 @@ const Settings = () => {
       <h2 className='text-2xl font-bold'>Settings</h2>
     <div className='mt-6'>
       <label className='font-medium'>
-        Pomodoro Duration (minutes)
+        Pomodoro Duration (seconds)
       </label>
       <input
       value={pomo}
@@ -49,7 +49,7 @@ const Settings = () => {
       </div>
       <div className='mt-6'>
       <label className='block font-medium'>
-        Short break (minutes)
+        Short break (seconds)
       </label>
       <input
       value={short}
@@ -62,7 +62,7 @@ const Settings = () => {
       </div>
       <div className='mt-6'>
       <label className='block font-medium'>
-        Long break (minutes)
+        Long break (seconds)
       </label>
       <input
       value={long}

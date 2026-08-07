@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react'
+import React, {use, useEffect } from 'react'
 import { useState } from 'react'
 const TaskList = () => {
   const [task, setTask] = useState('');
@@ -55,6 +55,10 @@ const TaskList = () => {
           setLoaded(true);
 
     },[])
+
+    useEffect(()=>{
+      localStorage.setItem("totalTasks",taskList.length);
+    },[taskList]);
 
   return (
     <div className='flex-1'>
