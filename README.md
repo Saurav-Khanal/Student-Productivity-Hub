@@ -35,11 +35,11 @@ The student productivity is a website that helps student manage their study work
  5.now you can open the website in your browser.
 
 ## Screenshots
-![Dashboard Page](src/assets/Dashboard.png)
-![Tasks page](src/assets/Tasks.png)
-![Timer page](src/assets/Timer.png)
-![Notes page](src/assets/Notes.png)
-![Settings page](src/assets/Settings.png)
+![Dashboard Page](./Student-Productivity-Hub/assets/Dashboard.png)
+![Tasks page](./Student-Productivity-Hub/assets/Tasks.png)
+![Timer page](./Student-Productivity-Hub/assets/Timer.png)
+![Notes page](./Student-Productivity-Hub/assets/Notes.png)
+![Settings page](./Student-Productivity-Hub/assets/Settings.png)
 
  ## AI Usage
  i used Chatgt to remember some react and javascript concepts that i alredy learned but somehow forgot. i also used it to help me debug when i was stuck with some errors continiously. I tested the code myself and used ai mainly when i needed help understanting and debugging something.
